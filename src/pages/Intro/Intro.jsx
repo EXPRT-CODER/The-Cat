@@ -1,5 +1,5 @@
-import TypeWriter from '../components/TypeWriter';
-import '../styles/Intro.css';
+import TypeWriter from '../../components/TypeWriter';
+import './Intro.css';
 import { useNavigate } from 'react-router-dom'; 
 
 const Intro = () => {
@@ -62,6 +62,6 @@ const Intro = () => {
 
     </div>
   )
-}
+};
 
 export default Intro;
