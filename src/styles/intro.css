@@ -1,0 +1,179 @@
+/* Unique button styles */
+
+.vx-credit-btn {
+  --vx-btn-round: 0.75rem;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  background: radial-gradient(
+      65.28% 65.28% at 50% 100%,
+      rgba(223, 113, 255, 0.8) 0%,
+      rgba(223, 113, 255, 0) 100%
+    ),
+    linear-gradient(0deg, #7a5af8, #7a5af8);
+  border-radius: var(--vx-btn-round);
+  border: none;
+  outline: none;
+  padding: 12px 18px;
+}
+
+.vx-credit-btn::before,
+.vx-credit-btn::after {
+  content: "";
+  position: absolute;
+  inset: var(--vx-space);
+  transition: all 0.5s ease-in-out;
+  border-radius: calc(var(--vx-btn-round) - var(--vx-space));
+  z-index: 0;
+}
+
+.vx-credit-btn::before {
+  --vx-space: 1px;
+  background: linear-gradient(
+    177.95deg,
+    rgba(255, 255, 255, 0.19) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.vx-credit-btn::after {
+  --vx-space: 2px;
+  background: radial-gradient(
+      65.28% 65.28% at 50% 100%,
+      rgba(223, 113, 255, 0.8) 0%,
+      rgba(223, 113, 255, 0) 100%
+    ),
+    linear-gradient(0deg, #7a5af8, #7a5af8);
+}
+
+.vx-credit-btn:active {
+  transform: scale(0.95);
+}
+
+/* Fold corner */
+.vx-credit-btn-fold {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 1rem;
+  width: 1rem;
+  transition: all 0.5s ease-in-out;
+  background: radial-gradient(
+    100% 75% at 55%,
+    rgba(223, 113, 255, 0.8) 0%,
+    rgba(223, 113, 255, 0) 100%
+  );
+  box-shadow: 0 0 3px black;
+  border-bottom-left-radius: 0.5rem;
+  border-top-right-radius: var(--vx-btn-round);
+}
+
+.vx-credit-btn-fold::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150%;
+  height: 150%;
+  transform: rotate(45deg) translateY(-18px);
+  background-color: #000000;
+  pointer-events: none;
+}
+
+.vx-credit-btn:hover .vx-credit-btn-fold {
+  margin-top: -1rem;
+  margin-right: -1rem;
+}
+
+/* Floating points */
+.vx-credit-btn-points {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.vx-credit-btn-point {
+  bottom: -10px;
+  position: absolute;
+  animation: vx-floating-points infinite ease-in-out;
+  width: 2px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 9999px;
+}
+
+@keyframes vx-floating-points {
+  0% {
+    transform: translateY(0);
+  }
+  85% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-55px);
+    opacity: 0;
+  }
+}
+
+/* Individual point timings */
+.vx-credit-btn-point:nth-child(1) { left: 10%; animation-duration: 2.35s; animation-delay: 0.2s; }
+.vx-credit-btn-point:nth-child(2) { left: 30%; animation-duration: 2.5s;  animation-delay: 0.5s; }
+.vx-credit-btn-point:nth-child(3) { left: 25%; animation-duration: 2.2s;  animation-delay: 0.1s; }
+.vx-credit-btn-point:nth-child(4) { left: 44%; animation-duration: 2.05s; }
+.vx-credit-btn-point:nth-child(5) { left: 50%; animation-duration: 1.9s; }
+.vx-credit-btn-point:nth-child(6) { left: 75%; animation-duration: 1.5s;  animation-delay: 1.5s; }
+.vx-credit-btn-point:nth-child(7) { left: 88%; animation-duration: 2.2s;  animation-delay: 0.2s; }
+.vx-credit-btn-point:nth-child(8) { left: 58%; animation-duration: 2.25s; animation-delay: 0.2s; }
+.vx-credit-btn-point:nth-child(9) { left: 98%; animation-duration: 2.6s;  animation-delay: 0.1s; }
+.vx-credit-btn-point:nth-child(10){ left: 65%; animation-duration: 2.5s;  animation-delay: 0.2s; }
+
+/* Inner content */
+.vx-credit-btn-inner {
+  z-index: 2;
+  gap: 6px;
+  position: relative;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Icon animation */
+.vx-credit-btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.vx-credit-btn:focus .vx-credit-btn-icon {
+  fill: white;
+}
+
+.vx-credit-btn:hover .vx-credit-btn-icon {
+  fill: transparent;
+  animation:
+    vx-dasharray 1s linear forwards,
+    vx-filled 0.1s linear forwards 0.95s;
+}
+
+@keyframes vx-dasharray {
+  to {
+    stroke-dasharray: 68 68 0 0;
+  }
+}
+
+@keyframes vx-filled {
+  to {
+    fill: white;
+  }
+}
