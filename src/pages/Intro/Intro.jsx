@@ -17,7 +17,7 @@ const Intro = () => {
     }}>
       
       <video
-        src="/src/assets/intro.mp4"
+        src="/intro.mp4"
         autoPlay
         loop
         muted
