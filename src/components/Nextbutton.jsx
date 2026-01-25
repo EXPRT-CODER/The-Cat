@@ -1,4 +1,4 @@
-import './Nextbutton.css';
+import './NextButton.css';
 import { useNavigate } from 'react-router-dom'; 
 const Nextbutton = () => {
  
