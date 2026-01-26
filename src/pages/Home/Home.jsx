@@ -1,34 +1,39 @@
 import React from 'react'
 import { useEffect , useState } from 'react';
+import Nextbutton from '../../components/Nextbutton';
 
 const Home = () => {
 
   const [results , setResults] = useState([]);
   const [facts , setFacts] = useState([]);
+  const [Refresh , setRefresh] = useState(false);
+  const [btntxt , setBtntxt] = useState("Get New Cat Facts");
 
   useEffect(() => {
-      const fetchFacts = async () => {
-        const res = await fetch("https://meowfacts.herokuapp.com/?count=5");
-        const data = await res.json();
-        setFacts(data.data);
-      };
-      fetchFacts();
-    },[]);
+    setBtntxt("Loading...");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const imgs = [];
-      for (let i = 0; i < 5; i++) {
-        const res = await fetch("https://api.thecatapi.com/v1/images/search");
-        const data = await res.json();
-        imgs.push(data[0].url);
-      }
+    const fetchFacts = async () => {
+      const imageRequests = Array.from({ length: 5 }, () =>
+        fetch("https://api.thecatapi.com/v1/images/search")
+          .then(res => res.json())
+          .then(data => data[0].url)
+      );
+
+      const factRequest = fetch("https://meowfacts.herokuapp.com/?count=5")
+        .then(res => res.json());
+
+      const [imgs, factData] = await Promise.all([
+        Promise.all(imageRequests),
+        factRequest
+      ]);
+
       setResults(imgs);
+      setFacts(factData.data);
+      setBtntxt("Get New Cat Facts");
     };
 
-    fetchData();
-  }, []);
-
+      fetchFacts();
+  }, [Refresh]);
 
   return (
     <>
@@ -46,15 +51,16 @@ const Home = () => {
        flex-col justify-center items-center 
        gap-1 rounded-lg shadow-lg'
       >
-        <img src={url} alt="image1" className='rounded-lg lg:max-w-[50%]'/>
+        <img src={url} alt="img Loading..." className='rounded-lg lg:max-w-[50%]'/>
         <p className=' p-3 '>{facts[index]} </p>
       </div>
       ))}
-
+      <div onClick={() => setRefresh((prev)=> !prev)}>
+        <Nextbutton text={btntxt}  bg="white"/>
+      </div>
     </div>
     </>
   );
 };
 
 export default Home;
-

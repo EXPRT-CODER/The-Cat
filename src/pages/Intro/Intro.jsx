@@ -18,7 +18,7 @@ const Intro = () => {
         ref={(v) => v && (v.playbackRate = 0.5)}
       />
       <TypeWriter />
-      <Nextbutton />
+      <Nextbutton text="Next" bg="black"/>
     </div>
   )
 };

@@ -81,7 +81,8 @@
   width: 150%;
   height: 150%;
   transform: rotate(45deg) translateY(-18px);
-  background-color: #000000;
+  background-color: var(--fold-bg, #000000);   
+  /* here it up */
   pointer-events: none;
 }
 
