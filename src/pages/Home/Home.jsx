@@ -43,18 +43,51 @@ const Home = () => {
       </h1>
     </header>
 
-    <div className='min-h-full w-full justify-center items-center p-10  flex flex-col gap-10'>
+    <div className='min-h-full w-full justify-center items-center p-10 lg:px-50  flex flex-col gap-10'>
 
       {results.map((url, index) => (
-        <div key={index}
-      className=' flex lg:flex-row lg:gap-10
-       flex-col justify-center items-center 
-       gap-1 rounded-lg shadow-lg'
-      >
-        <img src={url} alt="img Loading..." className='rounded-lg lg:max-w-[50%]'/>
-        <p className=' p-3 '>{facts[index]} </p>
-      </div>
-      ))}
+        <div
+          key={index}
+          className="
+            w-full
+            bg-white
+            rounded-xl
+            overflow-hidden
+            grid
+            lg:grid-cols-2
+            shadow-[0_8px_30px_rgba(0,0,0,0.12)]
+            hover:shadow-[0_16px_40px_rgba(0,0,0,0.18)]
+            transition-shadow
+            duration-300
+          "
+        >
+          {/* Image */}
+            <div className="w-full flex justify-center items-start p-4 gap-10">
+              <img
+                src={url}
+                alt="Cat"
+                className="
+                  w-full
+                  h-auto
+                  rounded-lg
+                "
+              />
+            </div>
+
+            {/* Text */}
+            <div className="flex items-center p-6">
+              <p className="
+                text-gray-700
+                text-lg
+                font-semibold
+                leading-relaxed
+              ">
+                {facts[index]}
+              </p>
+            </div>
+          </div>
+        ))}
+
       <div onClick={() => setRefresh((prev)=> !prev)}>
         <Nextbutton text={btntxt}  bg="white"/>
       </div>
