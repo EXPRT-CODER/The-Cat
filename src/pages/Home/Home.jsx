@@ -30,6 +30,11 @@ const Home = () => {
       setResults(imgs);
       setFacts(factData.data);
       setBtntxt("Get New Cat Facts");
+
+      window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     };
 
       fetchFacts();
